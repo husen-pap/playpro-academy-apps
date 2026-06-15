@@ -1,0 +1,259 @@
+:root {
+    --primary-color: #004B75;     /* Biru Utama Playpro */
+    --secondary-color: #002B49;   /* Biru Gelap Hover */
+    --accent-color: #1379B2;      /* Biru Medium */
+    --light-accent: #6DA2F9;      /* Biru Muda Highlight */
+    
+    --bg-light: #f4f8fa;          
+    --shape-bg: #e3eff5;          
+    --white: #ffffff;
+    --text-dark: #0f172a;         
+    --danger-red: #d9534f;
+    
+    /* Datetime Widget Warna Solid */
+    --clock-bg: #e65100;          
+    --clock-text: #ffffff;        
+    --date-bg: #004B75;           
+    --date-text: #ffffff;         
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+/* ================= HEADER ATAS ================= */
+.top-header {
+    background-color: var(--white);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #cbdff0;
+}
+.header-left { display: flex; align-items: center; }
+.header-title h1 { margin: 0; font-size: 1.25rem; color: var(--primary-color); }
+.header-title p { margin: 3px 0 0 0; color: #5c708a; font-size: 0.85rem; }
+.header-right { display: flex; gap: 12px; }
+
+.btn-svg-icon { 
+    width: 18px !important; 
+    height: 18px !important; 
+    display: block; 
+}
+
+.top-home-btn, .top-logout-btn {
+    display: inline-flex;
+    align-items: center; 
+    justify-content: center;
+    gap: 8px;
+    background-color: transparent;
+    padding: 9px 16px; border-radius: 6px;
+    font-weight: 600; font-size: 0.9rem; cursor: pointer;
+    transition: all 0.2s;
+}
+.top-home-btn { color: var(--primary-color); border: 1px solid #cbdff0; }
+.top-home-btn:hover { background-color: #cbdff0; }
+.top-logout-btn { color: var(--danger-red); border: 1px solid #f5c6cb; }
+.top-logout-btn:hover { background-color: #f8d7da; }
+
+/* ================= SIDEBAR MENU LAYOUT ================= */
+.sidebar {
+    width: 260px; height: 100vh;
+    background-color: var(--primary-color); color: var(--white);
+    position: fixed; top: 0; left: 0;
+    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1050; overflow: hidden;
+}
+.main-content { margin-left: 260px; min-height: 100vh; box-sizing: border-box; transition: margin-left 0.3s; }
+
+/* 💡 REVISI UTAMA DESKTOP: Tombol hamburger di dalam sidebar brand nangkring megah */
+.sidebar-brand { padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.15); height: 45px; }
+.brand-wrapper { display: flex; align-items: center; gap: 10px; }
+.brand-text { margin: 0; font-size: 1.1rem; font-weight: bold; color: var(--white); }
+
+#sidebarToggle { background: none; border: none; font-size: 1.4rem; color: var(--white); cursor: pointer; display: block; }
+#sidebarToggle:hover { color: var(--light-accent); }
+
+.sidebar-menu { list-style: none; padding: 20px 0; margin: 0; }
+.sidebar-menu li a { display: flex; align-items: center; padding: 15px 25px; color: #e1f0f7; text-decoration: none; font-weight: 500; transition: all 0.2s; white-space: nowrap; }
+.sidebar-menu li a:hover, .sidebar-menu li a.active { background-color: var(--secondary-color); color: var(--white); border-left: 5px solid var(--white); }
+.menu-icon svg { width: 20px; height: 20px; margin-right: 15px; display: block; }
+
+/* STATE LAPTOP DAN HP PAS KETUTUP (COLLAPSED) */
+.sidebar-collapsed .sidebar { width: 70px !important; }
+.sidebar-collapsed .main-content { margin-left: 70px !important; }
+.sidebar-collapsed .brand-wrapper, .sidebar-collapsed .menu-text { display: none !important; }
+.sidebar-collapsed .sidebar-brand { justify-content: center; padding: 15px 0 !important; }
+.sidebar-collapsed .sidebar-menu li a { justify-content: center; padding: 15px 0; border-left: none; }
+.sidebar-collapsed .menu-icon svg { margin-right: 0; }
+
+/* ================= WORKSPACE COMPONENTS ================= */
+.content-body { padding: 30px; }
+
+/* CONTAINER JAM & TANGGAL */
+.datetime-container-row { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.datetime-block { padding: 6px 14px; border-radius: 6px; display: flex; flex-direction: column; justify-content: center; width: fit-content !important; }
+.block-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 2px; }
+
+.block-clock { background-color: var(--clock-bg) !important; }
+.block-date { background-color: var(--date-bg) !important; }
+.block-clock #liveClock, .block-clock .block-label, .block-date #liveDate, .block-date .block-label { color: #ffffff !important; opacity: 1 !important; }
+#liveClock { font-size: 1.1rem; font-weight: 700; white-space: nowrap; }
+#liveDate { font-size: 0.9rem; font-weight: 600; white-space: nowrap; }
+
+.sso-section-container { background-color: var(--shape-bg); padding: 35px; border-radius: 16px; border: 1px solid #cbdff0; }
+.sso-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+.sso-card { background: var(--white); border-radius: 12px; padding: 35px 30px; display: flex; align-items: center; cursor: pointer; border: 1px solid #cbdff0; transition: all 0.2s; }
+.sso-card:hover { transform: translateY(-3px); border-color: var(--primary-color); box-shadow: 0 6px 15px rgba(0,75,117,0.08); }
+.card-icon svg { width: 36px; height: 36px; color: var(--primary-color); }
+.card-icon { margin-right: 20px; }
+.card-info h3 { margin: 0; font-size: 1.1rem; color: var(--primary-color); }
+.card-info p { margin: 5px 0 0 0; font-size: 0.85rem; color: #666; }
+
+/* ================= FORM STYLING ================= */
+.form-container { background: var(--white); padding: 40px; border-radius: 12px; border: 1px solid #cbdff0; box-sizing: border-box; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary-color); }
+.form-group input { width: 100%; padding: 13px; border: 1px solid #cbdff0; border-radius: 6px; box-sizing: border-box; font-size: 0.95rem; }
+.form-group input:focus { outline: none; border-color: var(--primary-color); }
+.btn-submit { background-color: var(--accent-color); color: var(--white); border: none; padding: 14px; border-radius: 6px; font-weight: bold; width: 100%; cursor: pointer; margin-top: 25px; font-size: 1rem; transition: background 0.2s; }
+.btn-submit:hover { background-color: var(--secondary-color); }
+
+/* ================= SEVEN BRANCH POP-UP GRID ================= */
+.branch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
+.branch-card { background: var(--white); border: 1px solid #cbdff0; border-radius: 12px; padding: 20px 15px; text-align: center; cursor: pointer; transition: all 0.2s ease; }
+.branch-card:hover { transform: translateY(-3px); border-color: var(--primary-color); box-shadow: 0 6px 15px rgba(0, 75, 117, 0.1); }
+.branch-icon { font-size: 2rem; margin-bottom: 8px; }
+.branch-card h3 { margin: 0; font-size: 1rem; color: var(--primary-color); font-weight: bold; }
+.branch-card p { margin: 4px 0 0 0; font-size: 0.75rem; color: #64748b; }
+
+/* ================= POP-UP OVERLAY MENGAMBANG ================= */
+.modal-overlay { 
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%; 
+    background: rgba(15, 23, 42, 0.75); 
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-start;     
+    z-index: 2000; 
+    padding: 40px 15px; 
+    box-sizing: border-box; 
+    overflow-y: auto;            
+    -webkit-overflow-scrolling: touch;
+}
+
+.modal-content { 
+    background: var(--white); 
+    border-radius: 16px; 
+    width: 100%; 
+    max-width: 680px; 
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); 
+    animation: modalSlideUp 0.2s ease-out; 
+    overflow: hidden; 
+    border: 1px solid #cbdff0; 
+    margin: 0 auto;             
+}
+
+#modalViewTable .table-container {
+    max-height: 380px;
+    overflow-y: auto;
+}
+
+.modal-header { background-color: var(--primary-color); color: var(--white); padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; }
+.modal-header h2 { margin: 0; font-size: 1.1rem; font-weight: 600; }
+
+.modal-close-btn { background: none; border: none; color: var(--white); font-size: 1.1rem; cursor: pointer; padding: 5px; }
+.modal-close-btn:hover { color: #f87171; }
+.modal-back-btn { background: var(--secondary-color); border: 1px solid rgba(255,255,255,0.2); color: var(--white); padding: 6px 12px; border-radius: 4px; font-size: 0.8rem; cursor: pointer; font-weight: bold; }
+.modal-back-btn:hover { background-color: var(--accent-color); }
+
+@keyframes modalSlideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ================= TABLES CONFIGURATION ================= */
+.table-container { background: var(--white); border-radius: 12px; overflow: hidden; border: 1px solid #cbdff0; width: 100%; display: block; box-sizing: border-box; }
+table { width: 100%; border-collapse: collapse; }
+th { background-color: var(--primary-color); color: var(--white); padding: 14px; font-size: 0.9rem; }
+td { padding: 14px; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+tr:hover { background-color: #f4f8fc; }
+
+.status-badge { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; }
+.status-pending { background-color: #ffeeba; color: #856404; }
+.status-approved { background-color: #d4edda; color: #155724; }
+.status-rejected { background-color: #f8d7da; color: #721c24; }
+.done-badge { font-size: 0.8rem; color: #999; font-style: italic; }
+.btn-approve { background-color: #28a745; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+.btn-reject { background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+
+.section-title { font-size: 1.1rem; color: var(--primary-color); border-left: 4px solid var(--primary-color); padding-left: 12px; margin: 0 0 25px 0; font-weight: bold; }
+.section-title-normal { font-size: 1.2rem; color: var(--primary-color); border-left: 4px solid var(--primary-color); padding-left: 12px; margin-bottom: 25px; font-weight: bold; margin-top: 25px; }
+
+#tabelPengajuan th, #tabelPengajuan td, #tabelStok th, #tabelStok td { text-align: center; }
+#tabelPengajuan td:nth-child(3), #tabelPengajuan td:nth-child(5) { text-align: left; }
+
+/* =========================================================================
+   💡 SAKRAL REVISI: SINKRONISASI CORETAN OVERLAY & SINGLE HAMBURGER HP
+   ========================================================================= */
+@media (max-width: 768px) {
+    /* 1. Kondisi awal: Kunci sidebar mini strip 70px lurus vertikal */
+    .sidebar { 
+        width: 70px !important; 
+        left: 0 !important; 
+    }
+    .main-content { 
+        margin-left: 70px !important; 
+    }
+    
+    /* 2. 💡 HILANGKAN TOTAL LINGKARAN IJO: Sembunyikan ikon menu bawaan pas tertutup di HP */
+    .sidebar-collapsed .sidebar-menu {
+        display: none !important;
+    }
+
+    /* 3. Ketika Hamburger diklik (buka), lebarkan laci menu menutupi layar */
+    body:not(.sidebar-collapsed) .sidebar {
+        width: 260px !important;
+        box-shadow: 5px 0px 25px rgba(0,0,0,0.35);
+    }
+    /* Pastikan menu list kembali muncul utuh pas laci dibuka */
+    body:not(.sidebar-collapsed) .sidebar-menu {
+        display: block !important;
+    }
+    body:not(.sidebar-collapsed) .brand-wrapper,
+    body:not(.sidebar-collapsed) .menu-text {
+        display: flex !important;
+    }
+    body:not(.sidebar-collapsed) .sidebar-brand {
+        padding: 15px 20px !important;
+        justify-content: space-between !important;
+    }
+    body:not(.sidebar-collapsed) .sidebar-menu li a {
+        justify-content: flex-start !important;
+        padding: 15px 25px !important;
+    }
+
+    .top-header { 
+        flex-direction: column; 
+        gap: 15px; 
+        align-items: flex-start; 
+        padding: 15px; 
+    }
+    .header-left { width: 100%; justify-content: flex-start; }
+    .header-title h1 { font-size: 1.1rem; }
+    .header-right { width: 100%; justify-content: flex-start; gap: 10px; }
+    .top-home-btn, .top-logout-btn { padding: 8px 14px; font-size: 0.8rem; }
+
+    /* Box Jam Kompak Berjejer Minimalis */
+    .datetime-container-row { display: flex !important; flex-direction: row !important; width: 100%; gap: 8px; justify-content: flex-start; }
+    .datetime-block { width: auto !important; flex: 0 1 auto; padding: 6px 12px; }
+    #liveClock { font-size: 1rem; }
+    #liveDate { font-size: 0.85rem; }
+
+    .sso-grid, .branch-grid { grid-template-columns: 1fr !important; gap: 12px; }
+    .table-container { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+    table { min-width: 750px; }
+    .content-body { padding: 15px; }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "sistem-logistik-basket",
+  "version": "1.0.0",
+  "description": "Sistem Tracking Barang Akademi Basket - Versi UAS",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
+  }
+}

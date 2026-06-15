@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Logistik</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="sidebar-collapsed">
+
+    <div class="sidebar" id="mySidebar">
+        <div class="sidebar-brand">
+            <div class="brand-wrapper">
+                <span class="brand-logo-old">🏀</span>
+                <h2 class="brand-text">Playpro Academy</h2>
+            </div>
+            <button id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+        </div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="#" class="active" id="nav-home" onclick="switchSection('home')">
+                    <span class="menu-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </span> 
+                    <span class="menu-text">Home</span>
+                </a>
+            </li>
+            <li id="menuFormPelatih">
+                <a href="#" id="nav-form" onclick="switchSection('form')">
+                    <span class="menu-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </span> 
+                    <span class="menu-text">Form Pengajuan</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="openStokPopup()">
+                    <span class="menu-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+                    </span> 
+                    <span class="menu-text">Stok Barang</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content" id="myMainContent">
+        
+        <div class="top-header">
+            <div class="header-left">
+                <div class="header-title">
+                    <h1>Sistem Logistik Playpro Academy</h1>
+                    <p>Selamat Datang, <strong id="userGreeting">Pengguna</strong> (<span id="userRole">Pelatih</span> - <span id="userCabang">Cabang</span>)</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <button onclick="switchSection('home')" class="top-home-btn">
+                    <svg class="btn-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <span>Home</span>
+                </button>
+                <button onclick="logout()" class="top-logout-btn">
+                    <svg class="btn-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="content-body">
+
+            <div id="section-home" class="app-section">
+                <div class="datetime-container-row">
+                    <div class="datetime-block block-clock">
+                        <span class="block-label">Jam</span>
+                        <div id="liveClock">00:00:00</div>
+                    </div>
+                    <div class="datetime-block block-date">
+                        <span class="block-label">Tanggal</span>
+                        <div id="liveDate">Memuat...</div>
+                    </div>
+                </div>
+
+                <div class="sso-section-container" style="margin-bottom: 35px;">
+                    <h2 class="section-title">Quick Access</h2>
+                    <div class="sso-grid">
+                        <div class="sso-card" id="cardFormPelatih" onclick="switchSection('form')">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            </div>
+                            <div class="card-info">
+                                <h3>Form Pengajuan</h3>
+                                <p>Input Permintaan Barang Baru</p>
+                            </div>
+                        </div>
+                        <div class="sso-card" onclick="openStokPopup()">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+                            </div>
+                            <div class="card-info">
+                                <h3>Stok Barang</h3>
+                                <p>Status dan Data Barang</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="section-title-normal">Daftar Pengajuan & Status Verifikasi</h2>
+                <div class="table-container">
+                    <table id="tabelPengajuan">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tanggal</th>
+                                <th>Pelatih</th>
+                                <th>Cabang</th>
+                                <th>Nama Barang</th>
+                                <th>Jumlah</th>
+                                <th>Status Sistem</th>
+                                <th>Verifikasi Admin</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="section-form" class="app-section" style="display: none;">
+                <h2 class="section-title-normal">Form Permintaan Barang</h2>
+                <div class="form-container">
+                    <form id="formPengajuan">
+                        <div class="form-group">
+                            <label>Nama Pelatih</label>
+                            <input type="text" id="namaPelatihForm" readonly style="background-color: #e9ecef; cursor: not-allowed; font-weight: bold; color: #495057;">
+                        </div>
+                        <div class="form-group">
+                            <label>Asal Cabang</label>
+                            <input type="text" id="asalCabangForm" readonly style="background-color: #e9ecef; cursor: not-allowed; font-weight: bold; color: #495057;">
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Barang</label>
+                            <input type="text" id="namaBarang" placeholder="Contoh: Bola Molten size 3" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah</label>
+                            <input type="number" id="jumlahBarang" placeholder="Masukkan Jumlah" required>
+                        </div>
+                        <button type="submit" class="btn-submit">Kirim Pengajuan</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="stokPopupModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            
+            <div id="modalViewBranches">
+                <div class="modal-header">
+                    <h2>Pilih Cabang Inventaris</h2>
+                    <button class="modal-close-btn" onclick="closeStokPopup()">✖</button>
+                </div>
+                <div style="padding: 25px;">
+                    <div class="branch-grid">
+                        <div class="branch-card" onclick="fetchDataStokCabang('Jaktim')">
+                            <div class="branch-icon">📍</div>
+                            <h3>Jakarta Timur</h3>
+                            <p>Cek Stok Barang</p>
+                        </div>
+                        <div class="branch-card" onclick="fetchDataStokCabang('Jakut')">
+                            <div class="branch-icon">📍</div>
+                            <h3>Jakarta Utara</h3>
+                            <p>Cek Stok Barang</p>
+                        </div>
+                        <div class="branch-card" onclick="fetchDataStokCabang('Jaksel')">
+                            <div class="branch-icon">📍</div>
+                            <h3>Jakarta Selatan</h3>
+                            <p>Cek Stok Barang</p>
+                        </div>
+                        <div class="branch-card" onclick="fetchDataStokCabang('Vida')">
+                            <div class="branch-icon">📍</div>
+                            <h3>Vida Bekasi</h3>
+                            <p>Cek Stok Barang</p>
+                        </div>
+                        <div class="branch-card" onclick="fetchDataStokCabang('Bekasi')">
+                            <div class="branch-icon">📍</div>
+                            <h3>Bekasi Pusat</h3>
+                            <p>Cek Stok Barang</p>
+                        </div>
+                        <div class="branch-card" onclick="fetchDataStokCabang('BSD')">
+                            <div class="branch-icon">📍</div>
+                            <h3>BSD Tangerang</h3>
+                            <p>Cek Stok Barang</p>
+                        </div>
+                        <div class="branch-card" onclick="fetchDataStokCabang('Bandung')">
+                            <div class="branch-icon">📍</div>
+                            <h3>Bandung</h3>
+                            <p>Cek Stok Barang</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modalViewTable" style="display: none;">
+                <div class="modal-header">
+                    <button class="modal-back-btn" onclick="backToBranchesView()">← Kembali</button>
+                    <h2 id="modalTableTitle">Data Stok Barang</h2>
+                    <button class="modal-close-btn" onclick="closeStokPopup()">✖</button>
+                </div>
+                <div style="padding: 25px;">
+                    <div class="table-container">
+                        <table id="tabelStok">
+                            <thead>
+                                <tr>
+                                    <th>ID Barang</th>
+                                    <th>Nama Barang</th>
+                                    <th>Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user) {
+            window.location.replace('index.html');
+        } else {
+            document.getElementById('userGreeting').innerText = user.username || 'Pengguna';
+            document.getElementById('userRole').innerText = user.role || 'Pelatih';
+            document.getElementById('userCabang').innerText = user.cabang || 'Pusat';
+            
+            if(document.getElementById('namaPelatihForm')) document.getElementById('namaPelatihForm').value = user.username;
+            if(document.getElementById('asalCabangForm')) document.getElementById('asalCabangForm').value = user.cabang || 'Pusat';
+        }
+
+        if (user && user.role === 'Admin') {
+            document.getElementById('menuFormPelatih').style.display = 'none';
+            if(document.getElementById('cardFormPelatih')) {
+                document.getElementById('cardFormPelatih').style.opacity = '0.3';
+                document.getElementById('cardFormPelatih').style.pointerEvents = 'none';
+            }
+        }
+
+        function toggleSidebar() {
+            document.body.classList.toggle('sidebar-collapsed');
+        }
+
+        function switchSection(sectionName) {
+            document.querySelectorAll('.app-section').forEach(sec => sec.style.display = 'none');
+            document.querySelectorAll('.sidebar-menu a').forEach(link => link.classList.remove('active'));
+            
+            document.getElementById(`section-${sectionName}`).style.display = 'block';
+            const activeNav = document.getElementById(`nav-${sectionName}`);
+            if(activeNav) activeNav.classList.add('active');
+
+            if(window.innerWidth <= 768) {
+                document.body.classList.add('sidebar-collapsed');
+            }
+        }
+
+        function updateDateTime() {
+            const now = new Date();
+            document.getElementById('liveClock').innerText = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+            document.getElementById('liveDate').innerText = now.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+        function openStokPopup() {
+            document.getElementById('modalViewBranches').style.display = 'block';
+            document.getElementById('modalViewTable').style.display = 'none';
+            document.getElementById('stokPopupModal').style.display = 'flex';
+        }
+
+        document.getElementById('stokPopupModal').addEventListener('click', function(e) {
+            if(e.target === this) closeStokPopup();
+        });
+
+        function closeStokPopup() {
+            document.getElementById('stokPopupModal').style.display = 'none';
+        }
+
+        function backToBranchesView() {
+            document.getElementById('modalViewTable').style.display = 'none';
+            document.getElementById('modalViewBranches').style.display = 'block';
+        }
+
+        async function fetchDataStokCabang(cabang) {
+            document.getElementById('modalTableTitle').innerText = `Stok Barang — Cabang ${cabang}`;
+            document.getElementById('modalViewBranches').style.display = 'none';
+            document.getElementById('modalViewTable').style.display = 'block';
+
+            const tbody = document.querySelector('#tabelStok tbody');
+            tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px;">Wait a second...</td></tr>';
+
+            try {
+                const res = await fetch(`/api/stok?cabang=${cabang}`);
+                const result = await res.json();
+                
+                let barisData = [];
+                if (result && Array.isArray(result.data)) {
+                    barisData = result.data;
+                } else if (Array.isArray(result)) {
+                    barisData = result;
+                }
+
+                if (!barisData || barisData.length === 0 || result.error) {
+                    tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#d9534f; font-style:italic; padding:25px;">⚠️ Tab ["Stok ' + cabang + '"] kosong atau tidak ditemukan le.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = '';
+                barisData.forEach(row => {
+                    const keys = Object.keys(row);
+                    let idBarang = row["ID Barang"] || row["id barang"] || row[keys[0]] || '-';
+                    let namaBarang = row["Nama Barang"] || row["nama barang"] || row[keys[1]] || '-';
+                    let jumlahBarang = row["Jumlah"] || row["jumlah"] || row[keys[2]] || '0';
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td><strong>${idBarang}</strong></td>
+                            <td style="text-align: left;">${namaBarang}</td>
+                            <td><span style="font-weight: bold; color: #004B75;">${jumlahBarang} Pcs</span></td>
+                        </tr>
+                    `;
+                });
+            } catch (err) {
+                tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#d9534f; padding:20px;">Koneksi terputus bre, periksa server.js!</td></tr>';
+            }
+        }
+
+        async function loadPengajuan() {
+            const res = await fetch('/api/pengajuan');
+            const result = await res.json();
+            const tbody = document.querySelector('#tabelPengajuan tbody');
+            if(!tbody) return;
+            tbody.innerHTML = '';
+
+            let jumlahBarisTercetak = 0;
+            if (result && Array.isArray(result.data)) {
+                result.data.forEach(row => {
+                    if (user && user.role === 'Pelatih' && row[3] !== user.cabang) return;
+
+                    let actionButton = '<span class="done-badge">No Action Required</span>';
+                    if (user && user.role === 'Admin' && row[6] === 'Pending') {
+                        actionButton = `
+                            <button class="btn-approve" onclick="updateStatus('${row[0]}', 'Disetujui')">✔ Setujui</button>
+                            <button class="btn-reject" onclick="updateStatus('${row[0]}', 'Ditolak')">✖ Tolak</button>
+                        `;
+                    }
+
+                    let statusClass = 'status-pending';
+                    if(row[6] === 'Disetujui') statusClass = 'status-approved';
+                    if(row[6] === 'Ditolak') statusClass = 'status-rejected';
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td>
+                            <td>${row[4]}</td><td>${row[5]} Pcs</td><td><span class="status-badge ${statusClass}">${row[6]}</span></td>
+                            <td>${actionButton}</td>
+                        </tr>
+                    `;
+                    jumlahBarisTercetak++;
+                });
+            }
+
+            if (jumlahBarisTercetak === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #777; font-style: italic; padding: 25px;">Belum ada riwayat pengajuan barang le.</td></tr>';
+            }
+        }
+
+        async function updateStatus(idPengajuan, status) {
+            await fetch('/api/pengajuan/status', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ idPengajuan, status })
+            });
+            alert(`Berhasil mengubah status pengajuan menjadi ${status}`);
+            loadPengajuan();
+        }
+
+        if(document.getElementById('formPengajuan')) {
+            document.getElementById('formPengajuan').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const barang = document.getElementById('namaBarang').value;
+                const jumlah = document.getElementById('jumlahBarang').value;
+                await fetch('/api/pengajuan', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ pelatih: user.username, cabang: user.cabang, barang, jumlah })
+                });
+                alert('Pengajuan berhasil dikirim!');
+                document.getElementById('formPengajuan').reset();
+                loadPengajuan();
+                switchSection('home');
+            });
+        }
+
+        function logout() {
+            localStorage.clear();
+            window.location.replace('index.html');
+        }
+
+        loadPengajuan();
+    </script>
+</body>
+</html>
