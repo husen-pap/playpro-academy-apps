@@ -201,9 +201,13 @@ app.get('/api/stok', async (req, res) => {
 });
 
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // 💡 Bonus: Ubah ini juga biar fleksibel ngikutin port hosting
+
 app.listen(PORT, () => {
     console.log(`====================================================================`);
     console.log(`🔥 SERVER SHEETDB BASKET BERJALAN AMAN DI http://localhost:${PORT}`);
     console.log(`====================================================================`);
 });
+
+// 💡 TARUH DI SINI (Di luar dan di paling bawah file!)
+module.exports = app;
