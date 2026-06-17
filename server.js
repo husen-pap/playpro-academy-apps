@@ -3,7 +3,13 @@ const path = require('path');
 
 const app = express();
 app.use(express.json());
-app.use(express.static('public'));
+// 1. GANTI BARIS INI (Biar Vercel gak nyasar nyari folder public):
+app.use(express.static(path.join(__dirname, 'public')));
+
+// 2. TAMBAHKAN BARIS INI DI BAWAHNYA (Memaksa Vercel langsung ngebuka halaman login saat web diakses):
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // =========================================================================
 // CONFIGURATION AREA (LINK API SHEETDB LIVE JURAGAN)
